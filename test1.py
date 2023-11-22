@@ -1,8 +1,12 @@
 import math
-from translator.conversor import find_value
+from translator.conversor import find_value, get_decompacted_value
 
-result, processes, length = find_value(1000)
+result, processes, mean, power = find_value(1000)
 
-print('Result: ', result)
 print('Processes: ', processes)
-print('Upper bound: ', length)
+print('Compacted: ', power)
+print('Mean: ', mean)
+
+value = get_decompacted_value(expo=power+1, processes=processes, val=result, alpha=mean)
+
+print('Input value: ', value)
