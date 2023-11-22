@@ -1,23 +1,35 @@
-from math import log2
+from math import log2, ceil, log, floor
+from time import sleep
 
 
-def find_value(i, value):
+
+def find_value(value):
+
+    nums = []
+    inc = 0
 
     while True:
+        
+        length = len(bin(value)[2:])
+        power = 2 ** length
 
-        num = (2**i)-value
+        value = power-value      
 
-        if num <= 0:
-            pass
+        nums.append(value)
 
-        else:
-            result = log2(num)
-            
-            if result - round(result, 1) == 0:
+        if log2(value) - round(log2(value), 1) == 0 or nums.count(value) > 1:
+            break
 
-                print(i)
-                
-                return result
+        inc += 1
 
+    for i in range(length):
+        val = 2**i
+        
+        result = log2(2**length-val) 
 
-        i += 1
+        if result - round(result, 1) == 0:
+            return log2(val), inc, length
+
+def get_decompacted_value(value, processes):
+    for regression in range(processes):
+        

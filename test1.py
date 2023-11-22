@@ -1,3 +1,8 @@
 import math
+from translator.conversor import find_value
 
-print(math.pow(2, 56)-122)
+result, processes, length = find_value(1000)
+
+print('Result: ', result)
+print('Processes: ', processes)
+print('Upper bound: ', length)
