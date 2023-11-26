@@ -2,8 +2,10 @@ import math
 
 from translator.conversor import find_value, get_decompacted_value
 
-upper, ex_value, inc, mean, result, length = find_value(60)
+result = find_value(967)
 
-decompacted = get_decompacted_value(upper, ex_value, inc, mean, length)
+print('Processes: ',  result['processes'])
+
+decompacted = get_decompacted_value(result)
 print(result)
 print(decompacted)
