@@ -3,6 +3,7 @@ import decimal
 from math import log2, ceil, log, floor
 from time import sleep
 import numpy as np
+from sympy import isprime
 
 
 
@@ -103,108 +104,7 @@ def find_value(value):
             return final_result
 
 def get_decompacted_value(result):
-
-    #Developement of the core of the decompact function
-
-    import numpy as np
-
-    ones_array = np.array([])
-    zeros_array = np.array([])
-    total_array = np.array([])
-
-    if result['processes'] == 0:
-        return abs(2 ** result['lower_power'] - result['upper'])
-
-    for pre_processing in range(result['processes']):
-
-        value = floor(result['lower_power'] + result['mean'] * pre_processing)
-
-        print('Value, initial: ',value)
-
-        ones_array = np.append(ones_array, value+1)
-        zeros_array = np.append(zeros_array, value)
-    
-    ones_array = np.delete(ones_array, 0)
-    zeros_array = np.delete(zeros_array, 0)
-
-    print(zeros_array)
-
-    total_array = np.concatenate((ones_array, zeros_array))
-    print(total_array)
-    
-    nums, counts= np.unique(total_array, return_counts=True)
-    result_array = np.column_stack((nums, counts))
-
-    print(result_array)
-    
-    counter = 0
-    total_array = np.array([])
-
-    for processing in range(result['processes']):
-
-        if result['processes'] == 1:
-            
-            value = result['upper']
-
-        else:
-
-            value = result_array[processing]
-
-            if value[1] > 1:
-
-                counter += 1
-
-                if counter == 1:
-                    pass
-
-                else:
-                    total_array = np.append(total_array, value[0])
-
-            else:
-                total_array = np.append(total_array, value[0])
-
-    
-    upper = result['upper']
-    lower = result['lower_power']
-    mean = result['mean']
-    ex_value = result['ex_value']
-
-    print(ex_value)
-
-    counter = 0
-
-    print(total_array) 
-        
-    for value in total_array:
-        print(value)
-        total_array[counter] = floor(2 * mean + value) 
-
-        counter += 1
-
-    print('Post, ', total_array)
-
-    value = upper + ex_value*2
-
-    print('Value, pre regression: ', value)
-
-    for regression in range(result['processes']):
-        try:
-
-            sleep(1)
-            print(value)
-
-            value = floor(2 ** total_array[regression] - value)
-
-            response = value
-
-        except Exception as err0:
-            print(f'OOB ({err0}), continue process...')
-
-    if result['processes'] == 1:
-        response = len(bin(upper)[2:])
-        return 2**(response+result['mean']) - upper
-
-    return response          
+    pass
 
     
 
